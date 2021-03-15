@@ -2,17 +2,18 @@ module.exports = ({ env }) => ({
   defaultConnection: 'default',
   connections: {
     default: {
-      connector: 'bookshelf',
+      connector: 'mongoose',
       settings: {
-        client: 'postgres',
-        host: env('DATABASE_HOST', '127.0.0.1'),
-        port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'strapi'),
-        username: env('DATABASE_USERNAME', ''),
+        host: env('DATABASE_HOST', 'cluster0.r4da8.mongodb.net'),
+        srv: env.bool('DATABASE_SRV', true),
+        port: env.int('DATABASE_PORT', 27017),
+        database: env('DATABASE_NAME', 'msmr'),
+        username: env('DATABASE_USERNAME', 'admin'),
         password: env('DATABASE_PASSWORD', ''),
       },
       options: {
-        useNullAsDefault: true,
+        authenticationDatabase: env('AUTHENTICATION_DATABASE', null),
+        ssl: env.bool('DATABASE_SSL', true),
       },
     },
   },
